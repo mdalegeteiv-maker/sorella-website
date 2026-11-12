@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorella Souvenir Booth</title>
+    
+    <!-- CUTE GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- MGA KULAY AT DESIGN --- */
+        :root {
+            --pastel-pink: #FFB6C1;
+            --pastel-purple: #D8BFD8;
+            --pastel-yellow: #FFFACD;
+            --hot-pink: #FF69B4;
+            --dark-text: #4a4a4a;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #fffafb; 
+            color: var(--dark-text);
+        }
+
+        h1, h2, h3, .cursive {
+            font-family: 'Pacifico', cursive;
+            font-weight: normal;
+        }
+
+        /* --- HEADER (Parang cloud/confetti effect) --- */
+        header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            text-align: center;
+            padding: 60px 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 0l3 17 17 3-17 3-3 17-3-17-17-3 17-3z" fill="rgba(255,255,255,0.3)"/></svg>');
+            border-bottom: 5px solid white;
+        }
+
+        header img {
+            max-width: 180px;
+            border-radius: 50%; 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border: 5px solid white;
+            background-color: white;
+            transition: transform 0.3s ease;
+        }
+
+        header img:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        header h1 {
+            margin-top: 20px;
+            font-size: 2rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.5);
+        }
+
+        /* --- MENU --- */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #8b5a8b;
+            font-weight: 600;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--hot-pink);
+            text-shadow: 0 0 5px rgba(255,105,180,0.5);
+        }
+
+        /* --- MAIN LAYOUT --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--hot-pink); 
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .center-text { text-align: center; }
+
+        /* --- PRODUCT CARDS (May Hover Effect) --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid #fff0f5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 8px;
+            background: linear-gradient(to right, var(--pastel-pink), var(--pastel-purple));
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.2);
+            border-color: var(--pastel-pink);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 15px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .card h3 { color: #d15b9a; font-size: 1.5rem; margin-bottom: 10px; }
+
+        /* --- BUTTON (Pang attract ng customer) --- */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--pastel-pink), var(--hot-pink));
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s;
+            margin-top: 20px;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        /* --- PACKAGES SECTION --- */
+        .pricing-section {
+            background: linear-gradient(135deg, #fff0f5, #f8e6ff);
+            padding: 60px 20px;
+            border-radius: 30px;
+            margin-top: 60px;
+            border: 4px dashed var(--pastel-purple);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .price-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .price-card:hover { transform: scale(1.05); }
+
+        .price-card h4 { font-size: 1.8rem; margin: 0; color: var(--hot-pink); }
+        .price-card .price { font-size: 2.5rem; font-weight: bold; color: #333; margin: 15px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #8b5a8b;
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            margin-top: 60px;
+            border-top: 8px solid var(--pastel-pink);
+        }
+
+        /* Design para sa Social Link */
+        .social-link {
+            color: var(--pastel-yellow);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER -->
+    <header>
+        <img src="logo.png" alt="Sorella Logo">
+        <h1>Creating Unforgettable Keepsakes, One Press at a Time.</h1>
+        <!-- Pinalitan ko ng link ng FB nila yung unang button -->
+        <a href="https://www.facebook.com/share/14zrN54xEvx/" target="_blank" class="btn" style="margin-top: 30px; background: white; color: var(--hot-pink);">Message Us on Facebook! 💖</a>
+    </header>
+
+    <!-- 2. MENU -->
+    <nav>
+        <a href="#products">Products</a>
+        <a href="#teachers">Teacher's Day</a>
+        <a href="#thermal">Thermal Bags</a>
+        <a href="#packages">Packages</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+    <!-- 3. MAIN CONTENT -->
+    <div class="container">
+
+        <!-- PRODUCTS SECTION -->
+        <div class="center-text">
+            <h2 class="section-title" id="products">Customized Totes & Pouches</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img src="tote-sarai.jpg" alt="SARAI Tote Bag">
+                <h3>Personalized Totes</h3>
+                <p>Add your name and favorite patches. Perfect for everyday use!</p>
+            </div>
+            <div class="card">
+                <img src="pouch-cecil.jpg" alt="Custom Pouches">
+                <h3>Personalized Pouches</h3>
+                <p>High-quality vibrant prints. Great for school supplies and gifts.</p>
+            </div>
+            <div class="card">
+                <img src="white-tote.jpg" alt="White Sorella Tote">
+                <h3>Classic White Tote</h3>
+                <p>Simple, elegant, and fully customizable with our cute decal stickers!</p>
+            </div>
+            <div class="card">
+                <img src="pink-tote.jpg" alt="MARA Pink Tote">
+                <h3>Custom Pink Totes</h3>
+                <p>Cute and colorful. Choose from our wide variety of decal stickers!</p>
+            </div>
+        </div>
+
+        <!-- TEACHER'S DAY SECTION -->
+        <div class="center-text" style="margin-top: 70px;">
+            <h2 class="section-title" id="teachers">Teacher's Day Specials</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img src="teachers-day.jpg" alt="Happy Teachers Day Pouch">
+                <h3>Happy Teacher's Day</h3>
+                <p>Show your appreciation! Perfect personalized gifts for your favorite teachers.</p>
+            </div>
+            <div class="card">
+                <img src="tote-faith.jpg" alt="Faith Tote Bag">
+                <h3>Inspirational Totes</h3>
+                <p>Spread good vibes with our faith-based and uplifting designs.</p>
+            </div>
+        </div>
+
+        <!-- THERMAL BAGS SECTION -->
+        <div class="center-text" style="margin-top: 70px;">
+            <h2 class="section-title" id="thermal">Insulated Thermal Bags</h2>
+        </div>
+        <div class="grid">
+            <div class="card" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto;">
+                <img src="thermal-bags.jpg" alt="Thermal Bags" style="height: auto; max-height: 500px;">
+                <h3>Keep Your Food Fresh</h3>
+                <p>Durable, reusable, and perfect for school, work, and travel. Available in Pink, Green, and Beige.</p>
+            </div>
+        </div>
+
+        <!-- PACKAGES SECTION -->
+        <div class="pricing-section" id="packages">
+            <div class="center-text">
+                <h2 class="section-title" style="border-bottom: none; margin-bottom: 10px;">Bulk & Souvenir Packages</h2>
+                <p style="font-size: 1.2rem; color: #8b5a8b;"><em>Prices are exclusive for our first 10 customers!</em></p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h4>Hiraya</h4>
+                    <div class="price">4,800</div>
+                    <p>25 Pouches & 25 Tote Bags<br>(Color of your choice)</p>
+                </div>
+                <div class="price-card">
+                    <h4>Mutya</h4>
+                    <div class="price">9,000</div>
+                    <p>50 Pouches & 50 Tote Bags<br>(Color of your choice)</p>
+                </div>
+                <div class="price-card">
+                    <h4>Tala</h4>
+                    <div class="price">13,000</div>
+                    <p>75 Pouches & 75 Tote Bags<br>(Color of your choice)</p>
+                </div>
+            </div>
+            
+            <!-- Pinalitan ko rin ng link ng FB yung Inquire button -->
+            <div class="center-text" style="margin-top: 40px;">
+                <a href="https://www.facebook.com/share/14zrN54xEvx/" target="_blank" class="btn">Inquire / Order Now! 💌</a>
+            </div>
+        </div>
+
+        <!-- SOUVENIR BOOTH SECTION -->
+        <div class="center-text" style="margin-top: 70px;">
+            <h2 class="section-title">Event Souvenir Booth</h2>
+        </div>
+        <div class="grid">
+            <div class="card" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto;">
+                <img src="booth.jpg" alt="Sorella Booth" style="height: auto; max-height: 500px;">
+                <h3>We Bring the Fun to Your Event!</h3>
+                <p>Planning a party, wedding, or corporate event? We bring the Sorella Booth to you! Live customization, on-the-spot printing, and fun memories.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 4. FOOTER -->
+    <footer id="contact">
+        <h2 class="cursive" style="font-size: 2rem; margin-top: 0;">Follow Us!</h2>
+        <p style="font-size: 1.2rem;">Facebook & Instagram: </p>
+        
+        <!-- HETO YUNG LINK SA ILALIM -->
+        <a href="https://www.facebook.com/share/14zrN54xEvx/" target="_blank" class="social-link">@sorella</a>
+        
+        <p style="font-size: 1.2rem; margin-top: 20px;">We Press It, You Love It! 💖</p>
+        <p style="font-size: 0.9rem; margin-top: 30px; opacity: 0.8;">&copy; 2024 Sorella Souvenir Booth. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
